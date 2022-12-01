@@ -1,0 +1,27 @@
+import fileinput
+
+
+def main():
+    totals = []
+
+    list = fileinput.input(files = "calories.txt")
+    counter = 0
+    for line in list:
+        if (line != "\n"):
+            counter = counter + int(line)
+        else:
+            totals.append(counter)
+            counter = 0
+
+    combined = 0
+    for i in range(3):
+        biggest = 0
+        for elf in range(len(totals)):
+            if (totals[elf] > biggest):
+                biggest = totals[elf]
+        totals.remove(biggest)
+        combined = combined + biggest
+
+    print(combined)
+
+main()
